@@ -5,9 +5,29 @@ import { BotanicalDivider } from "./BotanicalElements";
 function RingsIcon() {
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="13" cy="18" r="8" stroke="#D4AF6A" strokeWidth="1.8" fill="none"/>
-      <circle cx="23" cy="18" r="8" stroke="#D4AF6A" strokeWidth="1.8" fill="none"/>
-      <path d="M17 14 Q18 11 20 14" stroke="#D4AF6A" strokeWidth="1" fill="none" opacity="0.5"/>
+      <circle
+        cx="13"
+        cy="18"
+        r="8"
+        stroke="#D4AF6A"
+        strokeWidth="1.8"
+        fill="none"
+      />
+      <circle
+        cx="23"
+        cy="18"
+        r="8"
+        stroke="#D4AF6A"
+        strokeWidth="1.8"
+        fill="none"
+      />
+      <path
+        d="M17 14 Q18 11 20 14"
+        stroke="#D4AF6A"
+        strokeWidth="1"
+        fill="none"
+        opacity="0.5"
+      />
     </svg>
   );
 }
@@ -15,8 +35,20 @@ function RingsIcon() {
 function PinIcon() {
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M18 4C13.6 4 10 7.6 10 12C10 19 18 32 18 32C18 32 26 19 26 12C26 7.6 22.4 4 18 4Z" stroke="#D4AF6A" strokeWidth="1.8" fill="none"/>
-      <circle cx="18" cy="12" r="3.5" stroke="#D4AF6A" strokeWidth="1.5" fill="none"/>
+      <path
+        d="M18 4C13.6 4 10 7.6 10 12C10 19 18 32 18 32C18 32 26 19 26 12C26 7.6 22.4 4 18 4Z"
+        stroke="#D4AF6A"
+        strokeWidth="1.8"
+        fill="none"
+      />
+      <circle
+        cx="18"
+        cy="12"
+        r="3.5"
+        stroke="#D4AF6A"
+        strokeWidth="1.5"
+        fill="none"
+      />
     </svg>
   );
 }
@@ -24,8 +56,20 @@ function PinIcon() {
 function ClockIcon() {
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="12" stroke="#D4AF6A" strokeWidth="1.8" fill="none"/>
-      <path d="M18 10 L18 18 L24 21" stroke="#D4AF6A" strokeWidth="1.8" strokeLinecap="round"/>
+      <circle
+        cx="18"
+        cy="18"
+        r="12"
+        stroke="#D4AF6A"
+        strokeWidth="1.8"
+        fill="none"
+      />
+      <path
+        d="M18 10 L18 18 L24 21"
+        stroke="#D4AF6A"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -33,11 +77,39 @@ function ClockIcon() {
 function CelebrationIcon() {
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M8 28L16 12L28 24L20 28Z" stroke="#D4AF6A" strokeWidth="1.8" fill="none" strokeLinejoin="round"/>
-      <circle cx="26" cy="10" r="2.5" stroke="#D4AF6A" strokeWidth="1.5" fill="none"/>
-      <path d="M12 8 L14 11" stroke="#D4AF6A" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M28 18 L31 17" stroke="#D4AF6A" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M20 6 L20 9" stroke="#D4AF6A" strokeWidth="1.5" strokeLinecap="round"/>
+      <path
+        d="M8 28L16 12L28 24L20 28Z"
+        stroke="#D4AF6A"
+        strokeWidth="1.8"
+        fill="none"
+        strokeLinejoin="round"
+      />
+      <circle
+        cx="26"
+        cy="10"
+        r="2.5"
+        stroke="#D4AF6A"
+        strokeWidth="1.5"
+        fill="none"
+      />
+      <path
+        d="M12 8 L14 11"
+        stroke="#D4AF6A"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M28 18 L31 17"
+        stroke="#D4AF6A"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M20 6 L20 9"
+        stroke="#D4AF6A"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -83,8 +155,12 @@ function EventCard({
       </div>
 
       {/* Title */}
-      <p className="font-['DM_Sans'] text-xs tracking-[0.3em] uppercase text-[#9CAF88] mb-2">{subtitle}</p>
-      <h3 className="font-['Cormorant_Garamond'] text-3xl text-[#2D2D2D] font-light mb-5">{title}</h3>
+      <p className="font-['DM_Sans'] text-xs tracking-[0.3em] uppercase text-[#9CAF88] mb-2">
+        {subtitle}
+      </p>
+      <h3 className="font-['Cormorant_Garamond'] text-3xl text-[#2D2D2D] font-light mb-5">
+        {title}
+      </h3>
 
       {/* Divider */}
       <div className="w-12 h-[1px] bg-[#D4AF6A]/60 mb-5" />
@@ -93,7 +169,9 @@ function EventCard({
       <div className="space-y-3 w-full">
         <div className="flex items-center justify-center gap-3">
           <div className="w-4 h-[1px] bg-[#9CAF88]/50" />
-          <p className="font-['Cormorant_Garamond'] text-lg text-[#2D2D2D] italic">{date}</p>
+          <p className="font-['Cormorant_Garamond'] text-lg text-[#2D2D2D] italic">
+            {date}
+          </p>
           <div className="w-4 h-[1px] bg-[#9CAF88]/50" />
         </div>
         <div className="flex items-center justify-center gap-2">
@@ -101,10 +179,16 @@ function EventCard({
           <p className="font-['DM_Sans'] text-sm text-[#2D2D2D]/70">{time}</p>
         </div>
         <div className="flex items-start justify-center gap-2">
-          <div className="mt-0.5"><PinIcon /></div>
+          <div className="mt-0.5">
+            <PinIcon />
+          </div>
           <div className="text-left">
-            <p className="font-['DM_Sans'] text-sm text-[#2D2D2D] font-medium">{venue}</p>
-            <p className="font-['DM_Sans'] text-xs text-[#2D2D2D]/55">{address}</p>
+            <p className="font-['DM_Sans'] text-sm text-[#2D2D2D] font-medium">
+              {venue}
+            </p>
+            <p className="font-['DM_Sans'] text-xs text-[#2D2D2D]/55">
+              {address}
+            </p>
           </div>
         </div>
       </div>
@@ -122,7 +206,9 @@ export function EventDetailsSection() {
     <section id="details" className="relative py-24 px-6 bg-[#9CAF88]/10">
       {/* Section Header */}
       <div className="text-center mb-16">
-        <p className="font-['Great_Vibes'] text-3xl text-[#9CAF88] mb-2">Join us</p>
+        <p className="font-['Great_Vibes'] text-3xl text-[#9CAF88] mb-2">
+          Join us
+        </p>
         <h2 className="font-['Cormorant_Garamond'] text-4xl md:text-5xl text-[#2D2D2D] tracking-wide font-light">
           Event Details
         </h2>
@@ -138,7 +224,7 @@ export function EventDetailsSection() {
             title="Church Wedding"
             subtitle="The Exchange of Vows"
             date="Saturday, June 6, 2026"
-            time="9:00 AM"
+            time="10:00 AM"
             venue="Imperial Hall"
             address="Alausa · Ikeja, Lagos"
             inView={inView}
@@ -149,7 +235,7 @@ export function EventDetailsSection() {
             title="Engagement Ceremony"
             subtitle="Traditional Wedding"
             date="Saturday, June 6, 2026"
-            time="12:00 Noon"
+            time="12:30 Noon"
             venue="Imperial Hall"
             address="Alausa · Ikeja, Lagos"
             inView={inView}
@@ -163,9 +249,9 @@ export function EventDetailsSection() {
               delay={0.3}
               icon={<CelebrationIcon />}
               title="Reception"
-              subtitle="Dinner & Celebration"
+              subtitle="Dance & Celebration"
               date="Saturday, June 6, 2026"
-              time="2:00 PM"
+              time="2:30 PM"
               venue="Imperial Hall"
               address="Alausa · Ikeja, Lagos"
               inView={inView}
@@ -194,23 +280,38 @@ export function EventDetailsSection() {
             {/* Faux map grid lines */}
             <div className="absolute inset-0 opacity-20">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="absolute w-full h-[1px] bg-[#9CAF88]" style={{ top: `${(i + 1) * 12}%` }} />
+                <div
+                  key={i}
+                  className="absolute w-full h-[1px] bg-[#9CAF88]"
+                  style={{ top: `${(i + 1) * 12}%` }}
+                />
               ))}
               {[...Array(10)].map((_, i) => (
-                <div key={i} className="absolute h-full w-[1px] bg-[#9CAF88]" style={{ left: `${(i + 1) * 10}%` }} />
+                <div
+                  key={i}
+                  className="absolute h-full w-[1px] bg-[#9CAF88]"
+                  style={{ left: `${(i + 1) * 10}%` }}
+                />
               ))}
             </div>
             {/* Pin */}
             <div className="relative z-10 flex flex-col items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-[#D4AF6A] flex items-center justify-center shadow-lg">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 2C7.2 2 5 4.2 5 7C5 11.5 10 18 10 18C10 18 15 11.5 15 7C15 4.2 12.8 2 10 2Z" fill="white"/>
-                  <circle cx="10" cy="7" r="2" fill="#D4AF6A"/>
+                  <path
+                    d="M10 2C7.2 2 5 4.2 5 7C5 11.5 10 18 10 18C10 18 15 11.5 15 7C15 4.2 12.8 2 10 2Z"
+                    fill="white"
+                  />
+                  <circle cx="10" cy="7" r="2" fill="#D4AF6A" />
                 </svg>
               </div>
               <div className="text-center bg-[#FAF6F0]/90 px-6 py-3 rounded-xl shadow-sm">
-                <p className="font-['Cormorant_Garamond'] text-xl text-[#2D2D2D]">Imperial Hall</p>
-                <p className="font-['DM_Sans'] text-xs text-[#2D2D2D]/60 tracking-wide mt-1">Alausa · Ikeja, Lagos</p>
+                <p className="font-['Cormorant_Garamond'] text-xl text-[#2D2D2D]">
+                  Imperial Hall
+                </p>
+                <p className="font-['DM_Sans'] text-xs text-[#2D2D2D]/60 tracking-wide mt-1">
+                  Alausa · Ikeja, Lagos
+                </p>
               </div>
               <span className="font-['DM_Sans'] text-xs tracking-widest uppercase text-[#C9A84C] hover:text-[#D4AF6A] underline underline-offset-2 transition-colors">
                 Open in Google Maps →

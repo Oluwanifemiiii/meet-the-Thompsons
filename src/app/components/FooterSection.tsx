@@ -41,7 +41,7 @@ export function FooterSection() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="font-['Cormorant_Garamond'] text-2xl text-[#2D2D2D] font-light tracking-widest mb-2"
         >
-          Onifeoluwa & Oluwaseun
+          Onifeloluwa & Oluwaseun
         </motion.p>
 
         <motion.p
