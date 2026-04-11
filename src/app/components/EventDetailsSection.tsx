@@ -30,6 +30,18 @@ function ClockIcon() {
   );
 }
 
+function CelebrationIcon() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <path d="M8 28L16 12L28 24L20 28Z" stroke="#D4AF6A" strokeWidth="1.8" fill="none" strokeLinejoin="round"/>
+      <circle cx="26" cy="10" r="2.5" stroke="#D4AF6A" strokeWidth="1.5" fill="none"/>
+      <path d="M12 8 L14 11" stroke="#D4AF6A" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M28 18 L31 17" stroke="#D4AF6A" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M20 6 L20 9" stroke="#D4AF6A" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
 function EventCard({
   delay,
   icon,
@@ -59,7 +71,7 @@ function EventCard({
       className="relative bg-[#FAF6F0] rounded-2xl shadow-md p-8 md:p-10 flex flex-col items-center text-center group hover:shadow-xl transition-shadow duration-300"
       style={{ border: "1.5px solid #D4AF6A66" }}
     >
-      {/* Gold corner accent */}
+      {/* Gold corner accents */}
       <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#D4AF6A]/40 rounded-tl-2xl" />
       <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#D4AF6A]/40 rounded-tr-2xl" />
       <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#D4AF6A]/40 rounded-bl-2xl" />
@@ -116,33 +128,53 @@ export function EventDetailsSection() {
         </h2>
       </div>
 
-      {/* Cards */}
-      <div ref={ref} className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
-        <EventCard
-          delay={0}
-          icon={<RingsIcon />}
-          title="Church Wedding"
-          subtitle="The Exchange of Vows"
-          date="Saturday, June 6, 2026"
-          time="9:00 AM"
-          venue="Imperial Hall"
-          address="Alausa · Ikeja, Lagos"
-          inView={inView}
-        />
-        <EventCard
-          delay={0.2}
-          icon={<PinIcon />}
-          title="Engagement Ceremony"
-          subtitle="Dinner & Celebration"
-          date="Saturday, June 6, 2026"
-          time="12:00 Noon"
-          venue="Imperial Hall"
-          address="Alausa · Ikeja, Lagos"
-          inView={inView}
-        />
+      {/* Cards — top row: 2 cards, bottom row: 1 centred */}
+      <div ref={ref} className="max-w-4xl mx-auto mb-14">
+        {/* Top row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <EventCard
+            delay={0}
+            icon={<RingsIcon />}
+            title="Church Wedding"
+            subtitle="The Exchange of Vows"
+            date="Saturday, June 6, 2026"
+            time="9:00 AM"
+            venue="Imperial Hall"
+            address="Alausa · Ikeja, Lagos"
+            inView={inView}
+          />
+          <EventCard
+            delay={0.15}
+            icon={<PinIcon />}
+            title="Engagement Ceremony"
+            subtitle="Traditional Wedding"
+            date="Saturday, June 6, 2026"
+            time="12:00 Noon"
+            venue="Imperial Hall"
+            address="Alausa · Ikeja, Lagos"
+            inView={inView}
+          />
+        </div>
+
+        {/* Bottom row — centred third card */}
+        <div className="flex justify-center">
+          <div className="w-full md:w-[calc(50%-16px)]">
+            <EventCard
+              delay={0.3}
+              icon={<CelebrationIcon />}
+              title="Reception"
+              subtitle="Dinner & Celebration"
+              date="Saturday, June 6, 2026"
+              time="2:00 PM"
+              venue="Imperial Hall"
+              address="Alausa · Ikeja, Lagos"
+              inView={inView}
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Map Placeholder */}
+      {/* Map */}
       <motion.div
         ref={mapRef}
         initial={{ opacity: 0, y: 30 }}
@@ -158,38 +190,33 @@ export function EventDetailsSection() {
           className="block"
           aria-label="Open Imperial Hall in Google Maps"
         >
-        <div className="relative bg-[#9CAF88]/15 h-64 md:h-80 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-[#9CAF88]/22 transition-colors duration-300">
-          {/* Faux map grid lines */}
-          <div className="absolute inset-0 opacity-20">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="absolute w-full h-[1px] bg-[#9CAF88]" style={{ top: `${(i + 1) * 12}%` }} />
-            ))}
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="absolute h-full w-[1px] bg-[#9CAF88]" style={{ left: `${(i + 1) * 10}%` }} />
-            ))}
-          </div>
-          {/* Pin */}
-          <div className="relative z-10 flex flex-col items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-[#D4AF6A] flex items-center justify-center shadow-lg">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2C7.2 2 5 4.2 5 7C5 11.5 10 18 10 18C10 18 15 11.5 15 7C15 4.2 12.8 2 10 2Z" fill="white"/>
-                <circle cx="10" cy="7" r="2" fill="#D4AF6A"/>
-              </svg>
+          <div className="relative bg-[#9CAF88]/15 h-64 md:h-80 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-[#9CAF88]/22 transition-colors duration-300">
+            {/* Faux map grid lines */}
+            <div className="absolute inset-0 opacity-20">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="absolute w-full h-[1px] bg-[#9CAF88]" style={{ top: `${(i + 1) * 12}%` }} />
+              ))}
+              {[...Array(10)].map((_, i) => (
+                <div key={i} className="absolute h-full w-[1px] bg-[#9CAF88]" style={{ left: `${(i + 1) * 10}%` }} />
+              ))}
             </div>
-            <div className="text-center bg-[#FAF6F0]/90 px-6 py-3 rounded-xl shadow-sm">
-              <p className="font-['Cormorant_Garamond'] text-xl text-[#2D2D2D]">Imperial Hall</p>
-              <p className="font-['DM_Sans'] text-xs text-[#2D2D2D]/60 tracking-wide mt-1">Alausa · Ikeja, Lagos</p>
+            {/* Pin */}
+            <div className="relative z-10 flex flex-col items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-[#D4AF6A] flex items-center justify-center shadow-lg">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2C7.2 2 5 4.2 5 7C5 11.5 10 18 10 18C10 18 15 11.5 15 7C15 4.2 12.8 2 10 2Z" fill="white"/>
+                  <circle cx="10" cy="7" r="2" fill="#D4AF6A"/>
+                </svg>
+              </div>
+              <div className="text-center bg-[#FAF6F0]/90 px-6 py-3 rounded-xl shadow-sm">
+                <p className="font-['Cormorant_Garamond'] text-xl text-[#2D2D2D]">Imperial Hall</p>
+                <p className="font-['DM_Sans'] text-xs text-[#2D2D2D]/60 tracking-wide mt-1">Alausa · Ikeja, Lagos</p>
+              </div>
+              <span className="font-['DM_Sans'] text-xs tracking-widest uppercase text-[#C9A84C] hover:text-[#D4AF6A] underline underline-offset-2 transition-colors">
+                Open in Google Maps →
+              </span>
             </div>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Imperial+Hall+Alausa+Ikeja+Lagos+Nigeria"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-['DM_Sans'] text-xs tracking-widest uppercase text-[#C9A84C] hover:text-[#D4AF6A] underline underline-offset-2 transition-colors"
-            >
-              Open in Google Maps →
-            </a>
           </div>
-        </div>
         </a>
       </motion.div>
 

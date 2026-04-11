@@ -139,7 +139,7 @@ export function RSVPSection() {
           RSVP
         </h2>
         <p className="font-['DM_Sans'] text-sm text-[#2D2D2D]/60 mt-3 tracking-wide">
-          Kindly respond by May 15, 2026
+          Kindly respond by September 1, 2025
         </p>
       </div>
 
@@ -209,7 +209,7 @@ export function RSVPSection() {
               ) : (
                 <div className="grid grid-cols-1 gap-2">
                   {GIFT_OPTIONS.map((gift) => {
-                    const isClaimed = gift.id !== "money" && claimedGifts.has(gift.id);
+                    const isClaimed = gift.preReserved || (gift.id !== "money" && claimedGifts.has(gift.id));
                     const isSelected = form.gift === gift.id;
 
                     return (
