@@ -166,7 +166,7 @@ export function RSVPSection() {
           RSVP
         </h2>
         <p className="font-['DM_Sans'] text-sm text-[#2D2D2D]/60 mt-3 tracking-wide">
-          Kindly respond by September 1, 2025
+          Kindly respond by May 1st, 2026
         </p>
       </div>
 
