@@ -38,34 +38,55 @@ export function RSVPSection() {
   const [focused, setFocused] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  // Track which gifts are already claimed
   const [claimedGifts, setClaimedGifts] = useState<Set<string>>(new Set());
   const [loadingGifts, setLoadingGifts] = useState(true);
 
-  // Fetch already-claimed gifts on mount
-  useEffect(() => {
-    const fetchClaimedGifts = async () => {
-      try {
-        const { data, error } = await supabase
-          .from("rsvps")
-          .select("gift")
-          .not("gift", "is", null)
-          .neq("gift", "money");
+  const fetchClaimedGifts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("rsvps")
+        .select("gift")
+        .not("gift", "is", null)
+        .neq("gift", "money");
 
-        if (error) throw error;
-
-        const claimed = new Set<string>(
-          (data || []).map((r: { gift: string }) => r.gift).filter(Boolean)
-        );
-        setClaimedGifts(claimed);
-      } catch (err) {
-        console.error("Failed to fetch claimed gifts:", err);
-      } finally {
-        setLoadingGifts(false);
+      if (error) {
+        // RLS is likely blocking the select — log clearly so it's easy to diagnose
+        console.error("Could not fetch claimed gifts (check Supabase RLS policy):", error.message);
+        return;
       }
-    };
 
+      const claimed = new Set<string>(
+        (data || []).map((r: { gift: string }) => r.gift).filter(Boolean)
+      );
+      setClaimedGifts(claimed);
+    } catch (err) {
+      console.error("Unexpected error fetching claimed gifts:", err);
+    } finally {
+      setLoadingGifts(false);
+    }
+  };
+
+  useEffect(() => {
     fetchClaimedGifts();
+
+    // Real-time subscription — lock a gift the moment anyone else submits
+    const channel = supabase
+      .channel("rsvp-gifts")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "rsvps" },
+        (payload) => {
+          const newGift = payload.new?.gift;
+          if (newGift && newGift !== "money") {
+            setClaimedGifts((prev) => new Set([...prev, newGift]));
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const validate = () => {
@@ -100,6 +121,12 @@ export function RSVPSection() {
       ]);
 
       if (error) throw error;
+
+      // Optimistically lock the gift locally before navigating
+      if (form.gift && form.gift !== "money") {
+        setClaimedGifts((prev) => new Set([...prev, form.gift as string]));
+      }
+
       navigate("/success");
     } catch (err: unknown) {
       console.error("RSVP submission error:", err);
@@ -139,7 +166,7 @@ export function RSVPSection() {
           RSVP
         </h2>
         <p className="font-['DM_Sans'] text-sm text-[#2D2D2D]/60 mt-3 tracking-wide">
-          Kindly respond by May 1st, 2026
+          Kindly respond by September 1, 2025
         </p>
       </div>
 
@@ -154,7 +181,6 @@ export function RSVPSection() {
         <form onSubmit={handleSubmit} noValidate>
           <div className="space-y-5">
 
-            {/* Name / Email / Phone */}
             {fields.map((field, i) => (
               <motion.div
                 key={field.name}
@@ -226,7 +252,6 @@ export function RSVPSection() {
                               : "bg-white border border-[#9CAF88]/30 hover:border-[#9CAF88]/60 hover:bg-[#9CAF88]/5 cursor-pointer"
                           }`}
                       >
-                        {/* Checkbox / lock indicator */}
                         <span className={`flex-shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all duration-200
                           ${isClaimed
                             ? "border-[#aaa] bg-[#ccc]"
@@ -236,7 +261,6 @@ export function RSVPSection() {
                           }`}
                         >
                           {isClaimed ? (
-                            /* Lock icon */
                             <svg width="7" height="8" viewBox="0 0 7 8" fill="none">
                               <rect x="1" y="3.5" width="5" height="4" rx="0.8" fill="white"/>
                               <path d="M2 3.5V2.5a1.5 1.5 0 013 0v1" stroke="white" strokeWidth="1" fill="none"/>
@@ -259,7 +283,6 @@ export function RSVPSection() {
                           {gift.label}
                         </span>
 
-                        {/* Right-side badges */}
                         <span className="ml-auto flex-shrink-0">
                           {isClaimed ? (
                             <span className="font-['DM_Sans'] text-[10px] tracking-widest uppercase text-[#aaa] bg-[#ddd] px-2 py-0.5 rounded-full">
@@ -277,7 +300,6 @@ export function RSVPSection() {
                 </div>
               )}
 
-              {/* Money gift details panel */}
               <AnimatePresence>
                 {isMoneySelected && (
                   <motion.div
@@ -360,7 +382,6 @@ export function RSVPSection() {
               </motion.p>
             )}
 
-            {/* Submit */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
